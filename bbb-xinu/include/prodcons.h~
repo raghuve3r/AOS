@@ -1,0 +1,8 @@
+#include<future.h>
+
+#define SIZE 1024
+extern char response[SIZE];
+extern int n;
+
+int produce(future *f,int slot, char *str);
+int consume(future *f);

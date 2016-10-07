@@ -1,0 +1,22 @@
+/* userret.c - userret */
+
+#include <memtest1.h>
+
+char *tptr;
+
+/*------------------------------------------------------------------------
+ *  userret  -  Called when a process returns from the top-level function
+ *------------------------------------------------------------------------
+ */
+void userret(void)
+{
+uint32 counter=0;	
+while(*tptr!='F')
+{
+  counter++;
+  --tptr;
+}
+printf("Maximum stack space used by the process is %d\n",counter);
+
+kill(getpid());			/* Force process to exit */
+}

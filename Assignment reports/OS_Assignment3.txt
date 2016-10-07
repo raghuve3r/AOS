@@ -1,0 +1,61 @@
+1) How exactly is sychronization achieved using semaphore in our assignnment?
+
+2) Can the above sychronization be achieved with just one semaphore? Why or why not?
+
+Include the answers to the above questions in that file. Also write down all the functions in the project. Note the tasks of the group members who developed the various components.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1) We use 2 semaphores in our code, one on which the customer waits and one on which the producer waits. 
+
+Since the semaphore produced begins with a count of 0, the first call to wait in consumer blocks(wait decrements the count to -1 and since it is negative, it holds the calling process from executing). 
+Since the semaphore named consumed begins with a count of 1, wait will not block the first time it is called in producer(wait decrements the count to 0 and since it is not negative, the calling process is allowed to execute). 
+
+So, the producer is free to produce the intial value, assigns it to the global variable n and prints it. 
+
+Producer then signals to consumer with signal(produced), incrementing the produced count to 1, thereby allowing the consumer to print the initial value of n. 
+Consumer then signals to producer with signal(consumed), incrementing the consumed count to 1, thereby allowing the producer to produce the next value of n.
+
+In this way, the producer and consumer coordinates, thus achieving synchronization. 
+
+2) No, the above synchronization cannot be achieved with just one semaphore. Suppose we use just one semaphore and call the producer.c and consumer.c function - 
+
+void producer(int count)
+{
+  int i;
+  for(i=1;i<=count;i++)
+    {
+      wait(semaphore);	
+      n=i;	
+      kprintf("produced: %d \n",n);
+      signal(semaphore);
+    }
+}
+
+void consumer(int count)
+{     
+  int i;
+  for(i=1;i<=count;i++)
+    {
+      wait(semaphore);
+      kprintf("consumed: %d \n",n);
+      signal(semaphore);
+    }
+}
+
+Suppose semaphore is initialized with a count of 1, wait call in both producer and consumer functions allow them to execute concurrently, resulting in distorted output and both the functions are not synchronized.
+Suppose semaphore is initialzed with a count of 0, wait call in both producer and consumer functions is blocked and none of the functions will execute and hence will not be synchronized. 
+
+This is the reason we need 2 semaphores, one waiting on the producer and one on consumer, which will help to achieve synchronization between producer and consumer.
+
+Functions used:
+wait() and signal() are two additional functions apart from the ones used in assignment 2.
+
+wait() - The system call wait decrements a semaphore and if the result is negative, it adds the calling process to the set of waiting processes. If the result is positive, the calling process is allowed to execute. 
+
+signal() - The system call signal checks for any waiting process, then increments a semaphore and allows one of the waiting process to continue.
+
+Tasks performed:
+Producer function - created by Suhas Jagadish
+Consumer function - created by Raghuveer Krishnamurthy
+xsh_prodcons - collaborated by Suhas and Raghuveer
+Report file - collaborated by Suhas and Raghuveer.

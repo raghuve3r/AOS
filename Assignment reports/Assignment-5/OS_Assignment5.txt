@@ -1,0 +1,18 @@
+You need to submit assignment on Canvas. It will include GitHub commit hash-code, Time Stamp and description. Your submission will also contain report file which will include the functionality developed by each group member.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Tasks performed:
+future.h - collaborated by Suhas and Raghuveer
+xsh_prodcons.c - collaborated by Suhas and Raghuveer
+future_get.c - created by Raghuveer Krishnamurthy
+future_set.c - created by Suhas Jagadish
+future_alloc.c - created by Suhas Jagadish
+future_free.c - created by Raghuveer Krishnamurthy
+future_prod() - created by Suhas Jagadish
+future_cons() - created by Raghuveer Krishnamurthy
+
+Assumptions:
+1) We are defining a structure named "queue" which contains two variables pointing to front and rear end of the queue. An array is defined of type pid which holds the process ID of each process created.
+2) In the file "xsh_prodcons.c", we are initializing the front and rear ends of all our future queues to 0.
+3) We are calling sleep function for 1 second to ensure that the memory is freed only after all the threads complete their execution.  

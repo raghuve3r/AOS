@@ -1,0 +1,9 @@
+#include<xinu.h>
+
+void sample()
+{
+int a=1;
+int b=2;
+//printf("Simple addition %d\n",a+b);
+//kill(getpid());
+}

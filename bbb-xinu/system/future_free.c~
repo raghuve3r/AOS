@@ -1,0 +1,11 @@
+#include<future.h>
+
+syscall future_free(future* f)
+{
+ if(f)
+ {
+   freemem(f,sizeof(future));
+   return OK;
+ }
+ return SYSERR;
+}

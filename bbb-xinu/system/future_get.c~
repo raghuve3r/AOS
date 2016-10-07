@@ -1,0 +1,35 @@
+#include<future.h>
+
+
+syscall future_get(future *f, int *value){
+
+int mask;
+pid32 pid;
+mask=disable();
+if(f->flag == 3)
+{
+ if(f->state == 0)
+ {
+  pid = getpid();
+  if(pid<0)
+   { 
+	restore(mask);
+	return SYSERR;
+   }
+if(f->tid!=-1)
+{
+restore(mask);
+return SYSERR;
+}
+  f->tid = pid;
+
+  f->state = 1;
+ }
+ while(f->state == 1)
+ {
+  sleep(0.1);
+ }
+   *value = f->value;
+   restore(mask);
+   return OK;
+}

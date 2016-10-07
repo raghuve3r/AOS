@@ -1,0 +1,35 @@
+#include <prodcons.h>
+
+int n;
+
+shellcmd xsh_prodcons(int nargs, char *args[])
+{
+        if (nargs == 2 && strncmp(args[1], "--help", 6) == 0) 
+	{
+ 		printf("\n\nUse: %s flag [-f] \n\n", args[0]);
+		printf("Description:\n");
+		printf("\t Futures are used to synchronize two processes\n");
+		printf("\t--help\t display this help and exit\n");
+		return 0;
+	}
+	else if (nargs == 2 && strncmp(args[1], "-f", 2) == 0)
+	{
+	  future *f1, *f2, *f3;
+ 
+  	  f1 = future_alloc(FUTURE_EXCLUSIVE);
+  	  f2 = future_alloc(FUTURE_EXCLUSIVE);
+  	  f3 = future_alloc(FUTURE_EXCLUSIVE);
+ 
+  	  resume( create(future_prod, 1024, 20, "fcons1", 1, f1) );
+  	  resume( create(future_cons, 1024, 20, "fprod1", 1, f1) );
+  	  resume( create(future_prod, 1024, 20, "fcons2", 1, f2) );
+  	  resume( create(future_cons, 1024, 20, "fprod2", 1, f2) );
+  	  resume( create(future_prod, 1024, 20, "fcons3", 1, f3) );
+  	  resume( create(future_cons, 1024, 20, "fprod3", 1, f3) );
+        }
+        else
+	{ 
+	  kprintf("Please enter the correct input\n");
+	  return 0;
+	}
+}

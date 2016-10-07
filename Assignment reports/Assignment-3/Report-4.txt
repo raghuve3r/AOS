@@ -1,0 +1,14 @@
+You need to submit assignment on Canvas. It will include GitHub commit hash-code, Time Stamp and description. Your submission will also contain report file which will include the functionality developed by each group member.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Tasks performed:
+future.h - collaborated by Suhas and Raghuveer
+prodcons.h - collaborated by Suhas and Raghuveer
+xsh_prodcons.c - collaborated by Suhas and Raghuveer
+future_get.c - created by Raghuveer Krishnamurthy
+future_set.c - created by Suhas Jagadish
+future_alloc.c - created by Suhas Jagadish
+future_free.c - created by Raghuveer Krishnamurthy
+future_prod() - created by Suhas Jagadish
+future_cons() - created by Raghuveer Krishnamurthy

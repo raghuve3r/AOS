@@ -1,0 +1,25 @@
+Description:
+We developed a in-memory filesystem for Xinu using the modified data structure provided by Professor Martin Swany. 
+The header file "fs.h" and the shell command file "xsh_fstest.c" were provided by the Instructor. We created the system file "fs.c" which implements the basic filesystem functionalities. The functions include 
+- fs_open
+- fs_close
+- fs_create
+- fs_seek
+- fs_read
+- fs_write
+We have included checks for error handling and file validations. Basically all these modified functions perform the same task as standard xinu functions but they work on a different data structure. 
+
+Learning:
+This assignment helped us to understand how the filesystem functionalities work in a Xinu Operating System. Looking at the actual system implementations, we created our own implementations of the basic filesystem functions which performs the same tasks.
+
+Contributions:
+fs.c - Suhas Jagadish and Raghuveer Krishnamurthy
+fs_open() - Suhas Jagadish
+fs_close() - Suhas Jagadish
+fs_seek() - Suhas Jagadish
+fs_create() - Raghuveer Krishnamurthy
+fs_read() - Raghuveer Krishnamurthy
+fs_write() - Raghuveer Krishnamurthy
+fs.h - Instructors
+xsh_fstest.c - Instructors
+bs.c - Instructors

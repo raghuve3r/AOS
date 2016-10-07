@@ -1,0 +1,10 @@
+#include<memtest.h>
+
+shellcmd xsh_memtest(int nargs, char *args[])
+{
+	resume(create(sample, 1024, 20, "sample", 0));
+	sleep(3);
+	//int a = getmem6(sizeof(int));
+	//int b = getmem6(sizeof(int));
+	//int c = getmem6(sizeof(int));
+}

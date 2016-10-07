@@ -1,0 +1,34 @@
+Questions to Answer
+
+Does your program output any garbage? If yes, why?
+Are all the produced values getting consumed? Check your program for a small count like 20.
+
+Create "Report" file in your repository.
+
+Write the answers to above questions in that file. Also write down all the functions in the project. Note the tasks of the group members who developed the various components
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1) Yes - CPU scheduler allots time for each process based on round-robin fashion. When the producer or consumer tries to execute the print statement, sometimes the time slot might expire in the middle of execution, which results in inconsistent output. This inconsistency in results is made to look like garbage values on the output screen.
+
+2) No - The basic problem with producer and consumer functions is synchronization. Producer does not wait for consumer to consume the produced value nor will consumer wait until producer produces the value. For example, producer does not wait for consumer to consume each value of n and hence increments n at a stretch. When consumer gets the control, it prints the current value of n and not the previous values. In this case, consumer does not consume all the produces values.
+
+
+Functions used:
+
+xsh_prodcons(int, char *[]) : This function initializes the count value to 2000. count is the number of values produced by producer and consumed by consumer. The function then checks for error handling. If the number of arguments is 2 i.e., args[1], then it assigns the argument value to count. If we do not specify any arugument at runtime, then by default it picks up the count value as 2000 and executes the function. If number of arguments is more than 2, then it throws an error message asking for proper input. 
+In case of no error, producer and consumer processes are created by using OS functions create and resume.
+
+create: This function creates a new process that begins execution at the address specified by producer function, with a stack of 1024 bytes, initial priority of 20, identified by name "producder" and the value of count. 
+If the creation is successful, then the process id of the producer process is returned to the caller(resume). The created process will be in suspended state and will not begin execution until started by the resume command.
+
+resume: This function takes the process id returned by create command and begins the execution of process. 
+
+producer(int): Takes the value of count as argument which is passed by create function. The for loop runs from 0 to count, each time assigning the produced value to global variable n, print the produced value and then starts producing again until the value reaches count.
+   
+consumer(int): Takes the value of count as argument which is passed by create function. The for loop runs from 0 to count, each time printing the consumed value of n.
+
+Producer function - created by Suhas Jagadish
+Consumer function - created by Raghuveer Krishnamurthy
+xsh_prodcons - collaborated by Suhas and Raghuveer
+Report file - collaborated by Suhas and Raghuveer.  
